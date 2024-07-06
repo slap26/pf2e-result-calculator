@@ -1,4 +1,4 @@
-export const armorClass = {
+export const monsterArmorClass = {
 	"-1": {
 		low: 12,
 		moderate: 14,
@@ -156,3 +156,6 @@ export const armorClass = {
 		extreme: 54,
 	},
 };
+
+export type MonsterLevelType = keyof typeof monsterArmorClass;
+export type MonsterDifficultyType = "low" | "moderate" | "high" | "extreme";
