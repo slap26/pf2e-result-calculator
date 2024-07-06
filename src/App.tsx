@@ -5,11 +5,9 @@ import Calculator from "./calculator";
 function App() {
 	return (
 		<BrowserRouter>
-			<div className="min-h-screen min-w-full">
+			<div className="min-h-screen min-w-full bg-zinc-800 font-sans">
 				<Nav />
-				<main className="flex flex-grow">
-					<Calculator />
-				</main>
+				<Calculator />
 			</div>
 		</BrowserRouter>
 	);

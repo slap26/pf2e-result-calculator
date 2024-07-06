@@ -27,8 +27,6 @@ function Strike({
 	setCritSuccess,
 }: StrikeProps) {
 	const [finesse, setFinesse] = useState<boolean>(false);
-	const [agile, setAgile] = useState<boolean>(false);
-	const [mapPenalty, setMapPenalty] = useState<number>(0);
 	const [monsterDC, setMonsterDC] = useState<number>(
 		monsterArmorClass[monsterLvl].moderate
 	);
@@ -56,8 +54,8 @@ function Strike({
 	}, [strength, dexterity, playerLvl, proficiency, finesse]);
 
 	useEffect(() => {
-		setStrikeModifier(playerModifier - mapPenalty);
-	}, [strikeModifier, playerModifier, mapPenalty]);
+		setStrikeModifier(playerModifier);
+	}, [strikeModifier, playerModifier]);
 
 	const handleAnalyze = () => {
 		const [critFail, fail, success, critSuccess] = results(
@@ -91,15 +89,6 @@ function Strike({
 					/>
 					<label htmlFor="finesse">Finesse?</label>
 				</div>
-				<div>
-					<input
-						type="checkbox"
-						id="agile"
-						name="agile"
-						onChange={() => setAgile(!agile)}
-					/>
-					<label htmlFor="agile">Agile?</label>
-				</div>
 			</div>
 
 			<button
@@ -110,19 +99,6 @@ function Strike({
 			>
 				Analyze
 			</button>
-			{/* <button
-				className="border border-red-600 pr-2 hover:border-blue-600"
-				onClick={() => (agile ? setMapPenalty(4) : setMapPenalty(5))}
-			>
-				{agile ? playerModifier - 4 : playerModifier - 5}
-			</button>
-
-			<button
-				className="border border-red-600 pr-2 hover:border-blue-600"
-				onClick={() => (agile ? setMapPenalty(8) : setMapPenalty(10))}
-			>
-				{agile ? playerModifier - 8 : playerModifier - 10}
-			</button> */}
 		</div>
 	);
 }

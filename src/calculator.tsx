@@ -1,5 +1,5 @@
 import Strike from "./actions/strike";
-import { useState } from "react";
+import { act, useState } from "react";
 import { MonsterLevelType, MonsterDifficultyType } from "./tables";
 
 function Calculator() {
@@ -30,173 +30,167 @@ function Calculator() {
 	}));
 
 	return (
-		<div className="flex flex-col flex-grow">
-			<div className="flex">
-				<div className="flex flex-col justify-evenly items-center w-full">
+		<main className="flex flex-col flex-grow min-h-screen place-content-between py-3">
+			<div className="flex flex-col justify-evenly items-center w-full">
+				<h1 className="text-violet-700 text-xl font-bold">
+					Player Character
+				</h1>
+				<div className="flex flex-row text-orange-600">
 					<div className="flex flex-col">
-						<h1>Pathfinder Second Edition Percentage Calculator</h1>
-						<div className="flex flex-row">
-							<div className="flex flex-col">
-								<h2>Lvl</h2>
-								<select
-									id="playerLvl"
-									value={playerLvl}
-									onChange={(e) =>
-										setPlayerLvl(parseInt(e.target.value))
-									}
-								>
-									{playerLvls.map((plvl) => (
-										<option
-											key={plvl.value}
-											value={plvl.value}
-										>
-											{plvl.label}
-										</option>
-									))}
-								</select>
-							</div>
-							<div className="flex flex-col">
-								<h2>STR</h2>
-								<select
-									id="strength"
-									value={strength}
-									onChange={(e) =>
-										setStrength(parseInt(e.target.value))
-									}
-								>
-									<option value={-5}>-5</option>
-									<option value={-4}>-4</option>
-									<option value={-3}>-3</option>
-									<option value={-2}>-2</option>
-									<option value={-1}>-1</option>
-									<option value={0}>0</option>
-									<option value={1}>1</option>
-									<option value={2}>2</option>
-									<option value={3}>3</option>
-									<option value={4}>4</option>
-									<option value={5}>5</option>
-								</select>
-							</div>
-							<div className="flex flex-col">
-								<h2>DEX</h2>
-								<select
-									id="dexterity"
-									value={dexterity}
-									onChange={(e) =>
-										setDexterity(parseInt(e.target.value))
-									}
-								>
-									<option value={-5}>-5</option>
-									<option value={-4}>-4</option>
-									<option value={-3}>-3</option>
-									<option value={-2}>-2</option>
-									<option value={-1}>-1</option>
-									<option value={0}>0</option>
-									<option value={1}>1</option>
-									<option value={2}>2</option>
-									<option value={3}>3</option>
-									<option value={4}>4</option>
-									<option value={5}>5</option>
-								</select>
-							</div>
-							<div className="flex flex-col">
-								<h2>CON</h2>
-								<select
-									id="constitution"
-									value={constitution}
-									onChange={(e) =>
-										setConstitution(
-											parseInt(e.target.value)
-										)
-									}
-								>
-									<option value={-5}>-5</option>
-									<option value={-4}>-4</option>
-									<option value={-3}>-3</option>
-									<option value={-2}>-2</option>
-									<option value={-1}>-1</option>
-									<option value={0}>0</option>
-									<option value={1}>1</option>
-									<option value={2}>2</option>
-									<option value={3}>3</option>
-									<option value={4}>4</option>
-									<option value={5}>5</option>
-								</select>
-							</div>
-							<div className="flex flex-col">
-								<h2>INT</h2>
-								<select
-									id="intelligence"
-									value={intelligence}
-									onChange={(e) =>
-										setIntelligence(
-											parseInt(e.target.value)
-										)
-									}
-								>
-									<option value={-5}>-5</option>
-									<option value={-4}>-4</option>
-									<option value={-3}>-3</option>
-									<option value={-2}>-2</option>
-									<option value={-1}>-1</option>
-									<option value={0}>0</option>
-									<option value={1}>1</option>
-									<option value={2}>2</option>
-									<option value={3}>3</option>
-									<option value={4}>4</option>
-									<option value={5}>5</option>
-								</select>
-							</div>
-							<div className="flex flex-col">
-								<h2>WIS</h2>
-								<select
-									id="wisdom"
-									value={wisdom}
-									onChange={(e) =>
-										setWisdom(parseInt(e.target.value))
-									}
-								>
-									<option value={-5}>-5</option>
-									<option value={-4}>-4</option>
-									<option value={-3}>-3</option>
-									<option value={-2}>-2</option>
-									<option value={-1}>-1</option>
-									<option value={0}>0</option>
-									<option value={1}>1</option>
-									<option value={2}>2</option>
-									<option value={3}>3</option>
-									<option value={4}>4</option>
-									<option value={5}>5</option>
-								</select>
-							</div>
-							<div className="flex flex-col">
-								<h2>CHA</h2>
-								<select
-									id="charisma"
-									value={charisma}
-									onChange={(e) =>
-										setCharisma(parseInt(e.target.value))
-									}
-								>
-									<option value={-5}>-5</option>
-									<option value={-4}>-4</option>
-									<option value={-3}>-3</option>
-									<option value={-2}>-2</option>
-									<option value={-1}>-1</option>
-									<option value={0}>0</option>
-									<option value={1}>1</option>
-									<option value={2}>2</option>
-									<option value={3}>3</option>
-									<option value={4}>4</option>
-									<option value={5}>5</option>
-								</select>
-							</div>
-						</div>
+						<h2>Lvl</h2>
+						<select
+							id="playerLvl"
+							value={playerLvl}
+							onChange={(e) =>
+								setPlayerLvl(parseInt(e.target.value))
+							}
+						>
+							{playerLvls.map((plvl) => (
+								<option key={plvl.value} value={plvl.value}>
+									{plvl.label}
+								</option>
+							))}
+						</select>
+					</div>
+					<div className="flex flex-col">
+						<h2>STR</h2>
+						<select
+							id="strength"
+							value={strength}
+							onChange={(e) =>
+								setStrength(parseInt(e.target.value))
+							}
+						>
+							<option value={-4}>-4</option>
+							<option value={-3}>-3</option>
+							<option value={-2}>-2</option>
+							<option value={-1}>-1</option>
+							<option value={0}>0</option>
+							<option value={1}>1</option>
+							<option value={2}>2</option>
+							<option value={3}>3</option>
+							<option value={4}>4</option>
+							<option value={5}>5</option>
+							<option value={6}>6</option>
+						</select>
+					</div>
+					<div className="flex flex-col">
+						<h2>DEX</h2>
+						<select
+							id="dexterity"
+							value={dexterity}
+							onChange={(e) =>
+								setDexterity(parseInt(e.target.value))
+							}
+						>
+							<option value={-4}>-4</option>
+							<option value={-3}>-3</option>
+							<option value={-2}>-2</option>
+							<option value={-1}>-1</option>
+							<option value={0}>0</option>
+							<option value={1}>1</option>
+							<option value={2}>2</option>
+							<option value={3}>3</option>
+							<option value={4}>4</option>
+							<option value={5}>5</option>
+							<option value={6}>6</option>
+						</select>
+					</div>
+					<div className="flex flex-col">
+						<h2>CON</h2>
+						<select
+							id="constitution"
+							value={constitution}
+							onChange={(e) =>
+								setConstitution(parseInt(e.target.value))
+							}
+						>
+							<option value={-4}>-4</option>
+							<option value={-3}>-3</option>
+							<option value={-2}>-2</option>
+							<option value={-1}>-1</option>
+							<option value={0}>0</option>
+							<option value={1}>1</option>
+							<option value={2}>2</option>
+							<option value={3}>3</option>
+							<option value={4}>4</option>
+							<option value={5}>5</option>
+							<option value={6}>6</option>
+						</select>
+					</div>
+					<div className="flex flex-col">
+						<h2>INT</h2>
+						<select
+							id="intelligence"
+							value={intelligence}
+							onChange={(e) =>
+								setIntelligence(parseInt(e.target.value))
+							}
+						>
+							<option value={-4}>-4</option>
+							<option value={-3}>-3</option>
+							<option value={-2}>-2</option>
+							<option value={-1}>-1</option>
+							<option value={0}>0</option>
+							<option value={1}>1</option>
+							<option value={2}>2</option>
+							<option value={3}>3</option>
+							<option value={4}>4</option>
+							<option value={5}>5</option>
+							<option value={6}>6</option>
+						</select>
+					</div>
+					<div className="flex flex-col">
+						<h2>WIS</h2>
+						<select
+							id="wisdom"
+							value={wisdom}
+							onChange={(e) =>
+								setWisdom(parseInt(e.target.value))
+							}
+						>
+							<option value={-4}>-4</option>
+							<option value={-3}>-3</option>
+							<option value={-2}>-2</option>
+							<option value={-1}>-1</option>
+							<option value={0}>0</option>
+							<option value={1}>1</option>
+							<option value={2}>2</option>
+							<option value={3}>3</option>
+							<option value={4}>4</option>
+							<option value={5}>5</option>
+							<option value={6}>6</option>
+						</select>
+					</div>
+					<div className="flex flex-col">
+						<h2>CHA</h2>
+						<select
+							id="charisma"
+							value={charisma}
+							onChange={(e) =>
+								setCharisma(parseInt(e.target.value))
+							}
+						>
+							<option value={-4}>-4</option>
+							<option value={-3}>-3</option>
+							<option value={-2}>-2</option>
+							<option value={-1}>-1</option>
+							<option value={0}>0</option>
+							<option value={1}>1</option>
+							<option value={2}>2</option>
+							<option value={3}>3</option>
+							<option value={4}>4</option>
+							<option value={5}>5</option>
+							<option value={6}>6</option>
+						</select>
 					</div>
 				</div>
+			</div>
+			<div className="flex flex-col justify-evenly items-center w-full">
+				<h1 className="text-violet-700 text-xl font-bold">Monster</h1>
 				<div className="flex flex-row">
 					<div className="flex flex-col">
-						<h2>Monster Lvl</h2>
+						<h2>Lvl</h2>
 						<select
 							id="monsterLvl"
 							value={monsterLvl}
@@ -217,7 +211,7 @@ function Calculator() {
 						</select>
 					</div>
 					<div className="flex flex-col">
-						<h2>Monster Difficulty</h2>
+						<h2>Difficulty</h2>
 						<select
 							id="monsterDifficulty"
 							value={monsterDifficulty}
@@ -235,6 +229,16 @@ function Calculator() {
 					</div>
 				</div>
 			</div>
+			<div className="flex flex-col">
+				<h2 className="text-violet-700 text-xl font-bold">Action</h2>
+				<select
+					id="action"
+					value={action}
+					onChange={(e) => setAction(e.target.value)}
+				>
+					<option value={"strike"}>strike</option>
+				</select>
+			</div>
 
 			{action === "strike" ? (
 				<Strike
@@ -251,7 +255,7 @@ function Calculator() {
 			) : (
 				<p>Placeholder</p>
 			)}
-			<div className="flex flex-grow">
+			<div className="flex">
 				<div>
 					<h2>Crit Fail</h2>
 					<h3>{critFail * 5}</h3>
@@ -269,7 +273,7 @@ function Calculator() {
 					<h3>{critSuccess * 5}</h3>
 				</div>
 			</div>
-		</div>
+		</main>
 	);
 }
 
