@@ -30,7 +30,7 @@ function Strike({
 	const [monsterDC, setMonsterDC] = useState<number>(
 		monsterArmorClass[monsterLvl].moderate
 	);
-	const [proficiency, setProficiency] = useState<number>(4);
+	const [proficiency, setProficiency] = useState<number>(2);
 	const [playerModifier, setPlayerModifier] = useState<number>(
 		strength + proficiency + playerLvl
 	);
@@ -68,29 +68,46 @@ function Strike({
 		setCritSuccess(critSuccess);
 	};
 	return (
-		<div className="flex flex-row">
-			<select
-				id="proficent"
-				value={proficiency}
-				onChange={(e) => setProficiency(parseInt(e.target.value))}
-			>
-				<option value={2}>Trained</option>
-				<option value={4}>Expert</option>
-				<option value={6}>Master</option>
-				<option value={8}>Legendary</option>
-			</select>
-			<div className="flex flex-col">
-				<div>
-					<input
-						type="checkbox"
-						id="finesse"
-						name="finesse"
-						onChange={() => setFinesse(!finesse)}
-					/>
-					<label htmlFor="finesse">Finesse?</label>
+		<div className="flex flex-col place-items-center mt-6">
+			<h1 className="text-violet-700 text-2xl font-bold">Weapon</h1>
+			<div className="flex flex-row place-content-evenly  w-full">
+				<div className="flex flex-col place-items-center">
+					<h1>Proficency</h1>
+					<select
+						className="bg-slate-700 rounded-md"
+						id="proficent"
+						value={proficiency}
+						onChange={(e) =>
+							setProficiency(parseInt(e.target.value))
+						}
+					>
+						<option value={2}>Trained</option>
+						<option value={4}>Expert</option>
+						<option value={6}>Master</option>
+						<option value={8}>Legendary</option>
+					</select>
+				</div>
+
+				<div className="flex flex-col items-start">
+					<div>
+						<input
+							type="checkbox"
+							id="finesse"
+							name="finesse"
+							onChange={() => setFinesse(!finesse)}
+						/>
+						<label className="" htmlFor="finesse">
+							Finesse
+						</label>
+					</div>
+					<div>
+						<input type="checkbox" id="agile" name="agile" />
+						<label className="" htmlFor="agile">
+							Agile
+						</label>
+					</div>
 				</div>
 			</div>
-
 			<button
 				className="border border-red-600 pr-2 hover:border-blue-600"
 				onClick={() => {

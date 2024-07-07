@@ -30,13 +30,13 @@ function Calculator() {
 	}));
 
 	return (
-		<main className="flex flex-col flex-grow min-h-screen place-content-between py-3">
-			<div className="flex flex-col justify-evenly items-center w-full">
-				<h1 className="text-violet-700 text-xl font-bold">
+		<main className="flex flex-col flex-grow min-h-screen">
+			<div className="flex flex-col justify-evenly items-center w-full mt-10">
+				<h1 className="text-violet-700 text-2xl font-bold">
 					Player Character
 				</h1>
-				<div className="flex flex-row text-orange-600">
-					<div className="flex flex-col">
+				<div className="flex flex-row place-content-evenly w-full p-1">
+					<div className="flex flex-col place-items-center">
 						<h2>Lvl</h2>
 						<select
 							id="playerLvl"
@@ -44,6 +44,7 @@ function Calculator() {
 							onChange={(e) =>
 								setPlayerLvl(parseInt(e.target.value))
 							}
+							className="bg-slate-700 rounded-md"
 						>
 							{playerLvls.map((plvl) => (
 								<option key={plvl.value} value={plvl.value}>
@@ -52,7 +53,7 @@ function Calculator() {
 							))}
 						</select>
 					</div>
-					<div className="flex flex-col">
+					<div className="flex flex-col place-items-center">
 						<h2>STR</h2>
 						<select
 							id="strength"
@@ -60,6 +61,7 @@ function Calculator() {
 							onChange={(e) =>
 								setStrength(parseInt(e.target.value))
 							}
+							className="bg-slate-700 rounded-md"
 						>
 							<option value={-4}>-4</option>
 							<option value={-3}>-3</option>
@@ -74,7 +76,7 @@ function Calculator() {
 							<option value={6}>6</option>
 						</select>
 					</div>
-					<div className="flex flex-col">
+					<div className="flex flex-col place-items-center">
 						<h2>DEX</h2>
 						<select
 							id="dexterity"
@@ -82,6 +84,7 @@ function Calculator() {
 							onChange={(e) =>
 								setDexterity(parseInt(e.target.value))
 							}
+							className="bg-slate-700 rounded-md"
 						>
 							<option value={-4}>-4</option>
 							<option value={-3}>-3</option>
@@ -96,7 +99,7 @@ function Calculator() {
 							<option value={6}>6</option>
 						</select>
 					</div>
-					<div className="flex flex-col">
+					<div className="flex flex-col place-items-center">
 						<h2>CON</h2>
 						<select
 							id="constitution"
@@ -104,6 +107,7 @@ function Calculator() {
 							onChange={(e) =>
 								setConstitution(parseInt(e.target.value))
 							}
+							className="bg-slate-700 rounded-md"
 						>
 							<option value={-4}>-4</option>
 							<option value={-3}>-3</option>
@@ -118,7 +122,7 @@ function Calculator() {
 							<option value={6}>6</option>
 						</select>
 					</div>
-					<div className="flex flex-col">
+					<div className="flex flex-col place-items-center">
 						<h2>INT</h2>
 						<select
 							id="intelligence"
@@ -126,6 +130,7 @@ function Calculator() {
 							onChange={(e) =>
 								setIntelligence(parseInt(e.target.value))
 							}
+							className="bg-slate-700 rounded-md"
 						>
 							<option value={-4}>-4</option>
 							<option value={-3}>-3</option>
@@ -140,7 +145,7 @@ function Calculator() {
 							<option value={6}>6</option>
 						</select>
 					</div>
-					<div className="flex flex-col">
+					<div className="flex flex-col place-items-center">
 						<h2>WIS</h2>
 						<select
 							id="wisdom"
@@ -148,6 +153,7 @@ function Calculator() {
 							onChange={(e) =>
 								setWisdom(parseInt(e.target.value))
 							}
+							className="bg-slate-700 rounded-md"
 						>
 							<option value={-4}>-4</option>
 							<option value={-3}>-3</option>
@@ -162,7 +168,7 @@ function Calculator() {
 							<option value={6}>6</option>
 						</select>
 					</div>
-					<div className="flex flex-col">
+					<div className="flex flex-col place-items-center">
 						<h2>CHA</h2>
 						<select
 							id="charisma"
@@ -170,6 +176,7 @@ function Calculator() {
 							onChange={(e) =>
 								setCharisma(parseInt(e.target.value))
 							}
+							className="bg-slate-700 rounded-md"
 						>
 							<option value={-4}>-4</option>
 							<option value={-3}>-3</option>
@@ -186,12 +193,13 @@ function Calculator() {
 					</div>
 				</div>
 			</div>
-			<div className="flex flex-col justify-evenly items-center w-full">
-				<h1 className="text-violet-700 text-xl font-bold">Monster</h1>
-				<div className="flex flex-row">
-					<div className="flex flex-col">
+			<div className="flex flex-col justify-evenly items-center w-full mt-6">
+				<h1 className="text-violet-700 text-2xl font-bold">Monster</h1>
+				<div className="flex flex-row w-full justify-evenly p-1">
+					<div className="flex flex-col place-items-center">
 						<h2>Lvl</h2>
 						<select
+							className="bg-slate-700 rounded-md"
 							id="monsterLvl"
 							value={monsterLvl}
 							onChange={(e) =>
@@ -210,9 +218,10 @@ function Calculator() {
 							))}
 						</select>
 					</div>
-					<div className="flex flex-col">
+					<div className="flex flex-col place-items-center">
 						<h2>Difficulty</h2>
 						<select
+							className="bg-slate-700 rounded-md"
 							id="monsterDifficulty"
 							value={monsterDifficulty}
 							onChange={(e) =>
@@ -221,22 +230,23 @@ function Calculator() {
 								)
 							}
 						>
-							<option value={"low"}>low</option>
-							<option value={"moderate"}>moderate</option>
-							<option value={"high"}>high</option>
-							<option value={"extreme"}>extreme</option>
+							<option value={"low"}>Low</option>
+							<option value={"moderate"}>Moderate</option>
+							<option value={"high"}>High</option>
+							<option value={"extreme"}>Extreme</option>
 						</select>
 					</div>
 				</div>
 			</div>
-			<div className="flex flex-col">
-				<h2 className="text-violet-700 text-xl font-bold">Action</h2>
+			<div className="flex flex-col place-items-center mt-6">
+				<h2 className="text-violet-700 text-2xl font-bold">Action</h2>
 				<select
+					className=" bg-slate-700 rounded-md p-1"
 					id="action"
 					value={action}
 					onChange={(e) => setAction(e.target.value)}
 				>
-					<option value={"strike"}>strike</option>
+					<option value={"strike"}>Strike</option>
 				</select>
 			</div>
 
@@ -255,22 +265,22 @@ function Calculator() {
 			) : (
 				<p>Placeholder</p>
 			)}
-			<div className="flex">
-				<div>
+			<div className="flex w-full justify-evenly">
+				<div className="flex flex-col place-items-center text-red-700">
 					<h2>Crit Fail</h2>
-					<h3>{critFail * 5}</h3>
+					<h3>{critFail * 5}%</h3>
 				</div>
-				<div>
+				<div className="flex flex-col place-items-center text-red-700">
 					<h2>Fail</h2>
-					<h3>{fail * 5}</h3>
+					<h3>{fail * 5}%</h3>
 				</div>
-				<div>
+				<div className="flex flex-col place-items-center text-green-700">
 					<h2>Success</h2>
-					<h3>{success * 5}</h3>
+					<h3>{success * 5}%</h3>
 				</div>
-				<div>
+				<div className="flex flex-col place-items-center text-green-700">
 					<h2>Crit Success</h2>
-					<h3>{critSuccess * 5}</h3>
+					<h3>{critSuccess * 5}%</h3>
 				</div>
 			</div>
 		</main>
