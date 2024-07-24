@@ -1,24 +1,27 @@
 import Strike from "./actions/strike";
-import { act, useState } from "react";
+import { act, useEffect, useState } from "react";
 import { MonsterLevelType, MonsterDifficultyType } from "./tables";
 
 function Calculator() {
 	const [playerLvl, setPlayerLvl] = useState<number>(1);
 	const [strength, setStrength] = useState<number>(0);
-	const [constitution, setConstitution] = useState<number>(0);
 	const [dexterity, setDexterity] = useState<number>(0);
-	const [intelligence, setIntelligence] = useState<number>(0);
-	const [charisma, setCharisma] = useState<number>(0);
-	const [wisdom, setWisdom] = useState<number>(0);
-	const [critFail, setCritFail] = useState<number>(0);
-	const [fail, setFail] = useState<number>(0);
-	const [success, setSuccess] = useState<number>(0);
-	const [critSuccess, setCritSuccess] = useState<number>(0);
+	// const [constitution, setConstitution] = useState<number>(0);
+	// const [intelligence, setIntelligence] = useState<number>(0);
+	// const [charisma, setCharisma] = useState<number>(0);
+	// const [wisdom, setWisdom] = useState<number>(0);
 	const [action, setAction] = useState<string>("strike");
 	const [monsterLvl, setMonsterLvl] = useState<MonsterLevelType>("-1");
 	const [monsterDifficulty, setMonsterDifficulty] =
 		useState<MonsterDifficultyType>("moderate");
-
+	const [playerStatusBonus, setPlayerStatusBonus] = useState<number>(0);
+	const [playerCircumstanceBonus, setPlayerCircumstanceBonus] =
+		useState<number>(0);
+	const [playerBonus, setPlayerBonus] = useState<number>(0);
+	const [monsterStatusBonus, setMonsterStatusBonus] = useState<number>(0);
+	const [monsterCircumstanceBonus, setMonsterCircumstanceBonus] =
+		useState<number>(0);
+	const [monsterBonus, setMonsterBonus] = useState<number>(0);
 	const monsterLvls = Array.from({ length: 26 }, (_, i) => ({
 		value: i - 1,
 		label: `${i - 1}`,
@@ -28,6 +31,14 @@ function Calculator() {
 		value: index + 1,
 		label: `${index + 1}`,
 	}));
+
+	useEffect(() => {
+		setPlayerBonus(playerStatusBonus + playerCircumstanceBonus);
+	}, [playerStatusBonus, playerCircumstanceBonus]);
+
+	useEffect(() => {
+		setMonsterBonus(monsterStatusBonus + monsterCircumstanceBonus);
+	}, [monsterCircumstanceBonus, monsterStatusBonus]);
 
 	return (
 		<main className="flex flex-col flex-grow min-h-screen">
@@ -99,7 +110,7 @@ function Calculator() {
 							<option value={6}>6</option>
 						</select>
 					</div>
-					<div className="flex flex-col place-items-center">
+					{/* <div className="flex flex-col place-items-center">
 						<h2>CON</h2>
 						<select
 							id="constitution"
@@ -190,6 +201,52 @@ function Calculator() {
 							<option value={5}>5</option>
 							<option value={6}>6</option>
 						</select>
+					</div> */}
+				</div>
+				<div className="flex flex-row">
+					<div className="flex flex-col">
+						<h2>Circumstance Bonus</h2>
+						<select
+							id="playerCircumstanceBonus"
+							value={playerCircumstanceBonus}
+							onChange={(e) =>
+								setPlayerCircumstanceBonus(
+									parseInt(e.target.value)
+								)
+							}
+							className="bg-slate-700 rounded-md"
+						>
+							<option value={-4}>-4</option>
+							<option value={-3}>-3</option>
+							<option value={-2}>-2</option>
+							<option value={-1}>-1</option>
+							<option value={0}>0</option>
+							<option value={1}>1</option>
+							<option value={2}>2</option>
+							<option value={3}>3</option>
+							<option value={4}>4</option>
+						</select>
+					</div>
+					<div className="flex flex-col">
+						<h2>Status Bonus</h2>
+						<select
+							id="playerStatusBonus"
+							value={playerStatusBonus}
+							onChange={(e) =>
+								setPlayerStatusBonus(parseInt(e.target.value))
+							}
+							className="bg-slate-700 rounded-md"
+						>
+							<option value={-4}>-4</option>
+							<option value={-3}>-3</option>
+							<option value={-2}>-2</option>
+							<option value={-1}>-1</option>
+							<option value={0}>0</option>
+							<option value={1}>1</option>
+							<option value={2}>2</option>
+							<option value={3}>3</option>
+							<option value={4}>4</option>
+						</select>
 					</div>
 				</div>
 			</div>
@@ -237,6 +294,52 @@ function Calculator() {
 						</select>
 					</div>
 				</div>
+				<div className="flex flex-row">
+					<div className="flex flex-col">
+						<h2>Circumstance Bonus</h2>
+						<select
+							id="monsterCircumstanceBonus"
+							value={monsterCircumstanceBonus}
+							onChange={(e) =>
+								setMonsterCircumstanceBonus(
+									parseInt(e.target.value)
+								)
+							}
+							className="bg-slate-700 rounded-md"
+						>
+							<option value={-4}>-4</option>
+							<option value={-3}>-3</option>
+							<option value={-2}>-2</option>
+							<option value={-1}>-1</option>
+							<option value={0}>0</option>
+							<option value={1}>1</option>
+							<option value={2}>2</option>
+							<option value={3}>3</option>
+							<option value={4}>4</option>
+						</select>
+					</div>
+					<div className="flex flex-col">
+						<h2>Status Bonus</h2>
+						<select
+							id="monsterStatusBonus"
+							value={monsterStatusBonus}
+							onChange={(e) =>
+								setMonsterStatusBonus(parseInt(e.target.value))
+							}
+							className="bg-slate-700 rounded-md"
+						>
+							<option value={-4}>-4</option>
+							<option value={-3}>-3</option>
+							<option value={-2}>-2</option>
+							<option value={-1}>-1</option>
+							<option value={0}>0</option>
+							<option value={1}>1</option>
+							<option value={2}>2</option>
+							<option value={3}>3</option>
+							<option value={4}>4</option>
+						</select>
+					</div>
+				</div>
 			</div>
 			<div className="flex flex-col place-items-center mt-6">
 				<h2 className="text-violet-700 text-2xl font-bold">Action</h2>
@@ -257,32 +360,12 @@ function Calculator() {
 					playerLvl={playerLvl}
 					strength={strength}
 					dexterity={dexterity}
-					setCritFail={setCritFail}
-					setFail={setFail}
-					setSuccess={setSuccess}
-					setCritSuccess={setCritSuccess}
+					playerBonus={playerBonus}
+					monsterBonus={monsterBonus}
 				/>
 			) : (
 				<p>Placeholder</p>
 			)}
-			<div className="flex w-full justify-evenly">
-				<div className="flex flex-col place-items-center text-red-700">
-					<h2>Crit Fail</h2>
-					<h3>{critFail * 5}%</h3>
-				</div>
-				<div className="flex flex-col place-items-center text-red-700">
-					<h2>Fail</h2>
-					<h3>{fail * 5}%</h3>
-				</div>
-				<div className="flex flex-col place-items-center text-green-700">
-					<h2>Success</h2>
-					<h3>{success * 5}%</h3>
-				</div>
-				<div className="flex flex-col place-items-center text-green-700">
-					<h2>Crit Success</h2>
-					<h3>{critSuccess * 5}%</h3>
-				</div>
-			</div>
 		</main>
 	);
 }
