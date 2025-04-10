@@ -6,6 +6,7 @@ function Calculator() {
 	const [acdc, setAcdc] = useState<string>("");
 	const [agile, setAgile] = useState<boolean>(false);
 	const [strike, setStrike] = useState<string>("1st");
+	console.log(agile);
 
 	// State for each result category
 	const [critFail, setCritFail] = useState<number>(0);
