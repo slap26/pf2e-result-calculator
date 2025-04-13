@@ -1,6 +1,6 @@
 {
 	"name": "pf2e-result-calculator",
-	"homepage": "https://slap26.github.io/pf2e-result-calculator/",
+	"homepage": "https://slap26.github.io/pf2e-result-calculator",
 	"private": true,
 	"version": "0.0.0",
 	"type": "module",
