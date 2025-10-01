@@ -12,14 +12,14 @@ function Calculator() {
 	const [fail, setFail] = useState<number>(0);
 	const [success, setSuccess] = useState<number>(0);
 	const [critSuccess, setCritSuccess] = useState<number>(0);
-	const [secondCritFail, setSecondCritFail] = useState<number>(1);
-	const [secondFail, setSecondFail] = useState<number>(1);
-	const [secondSuccess, setSecondSuccess] = useState<number>(1);
-	const [secondCritSuccess, setSecondCritSuccess] = useState<number>(1);
-	const [thirdCritFail, setThirdCritFail] = useState<number>(2);
-	const [thirdFail, setThirdFail] = useState<number>(2);
-	const [thirdSuccess, setThirdSuccess] = useState<number>(2);
-	const [thirdCritSuccess, setThirdCritSuccess] = useState<number>(2);
+	const [secondCritFail, setSecondCritFail] = useState<number>(0);
+	const [secondFail, setSecondFail] = useState<number>(0);
+	const [secondSuccess, setSecondSuccess] = useState<number>(0);
+	const [secondCritSuccess, setSecondCritSuccess] = useState<number>(0);
+	const [thirdCritFail, setThirdCritFail] = useState<number>(0);
+	const [thirdFail, setThirdFail] = useState<number>(0);
+	const [thirdSuccess, setThirdSuccess] = useState<number>(0);
+	const [thirdCritSuccess, setThirdCritSuccess] = useState<number>(0);
 
 	const handleCalculate = () => {
 		const result = results(Number(modifier), Number(acdc), agile); // Ensure modifier and acdc are numbers
